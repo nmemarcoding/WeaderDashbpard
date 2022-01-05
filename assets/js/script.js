@@ -21,8 +21,10 @@ serchForm.addEventListener("submit", function(event) {
     displayCity();
     if (document.getElementById("clc") != null) {
         document.getElementById("clc").addEventListener("click", function(event) {
+            document.getElementById("city-input").value = ""
             document.getElementById("city-input").value = event.target.textContent;
             oneday();
+
         })
     }
 
@@ -176,8 +178,10 @@ if (localStorage.getItem("citys")) {
 // conect saved cites to search
 if (document.getElementById("clc") != null) {
     document.getElementById("clc").addEventListener("click", function(event) {
+        document.getElementById("city-input").value = ""
         document.getElementById("city-input").value = event.target.textContent;
         oneday();
+
     })
 }
 
