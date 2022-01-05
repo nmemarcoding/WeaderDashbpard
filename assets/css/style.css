@@ -16,7 +16,7 @@ button {
 }
 
 .smallContainer {
-    background-color: rgb(3, 3, 60);
+    background-color: #344659;
     color: white;
     width: 140px;
     padding: 0 0 20px 10px;
@@ -26,4 +26,12 @@ button {
 
 .text {
     padding-top: 30px;
+}
+
+#inputForm {
+    border-bottom: solid 3px gray;
+}
+
+button {
+    border-radius: 5px;
 }
