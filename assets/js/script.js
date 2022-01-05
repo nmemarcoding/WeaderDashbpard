@@ -19,11 +19,13 @@ serchForm.addEventListener("submit", function(event) {
     oneday();
     console.log(citys);
     displayCity();
+    if (document.getElementById("clc") != null) {
+        document.getElementById("clc").addEventListener("click", function(event) {
+            document.getElementById("city-input").value = event.target.textContent;
+            oneday();
+        })
+    }
 
-    document.getElementById("clc").addEventListener("click", function(event) {
-        document.getElementById("city-input").value = event.target.textContent;
-        oneday();
-    })
 
 
 
