@@ -1,0 +1,29 @@
+* {
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+}
+
+input,
+button {
+    width: 100%;
+}
+
+.top-container {
+    border: 1px solid black;
+    width: 100%;
+    height: auto;
+}
+
+.smallContainer {
+    background-color: rgb(3, 3, 60);
+    color: white;
+    width: 140px;
+    padding: 0 0 20px 10px;
+    margin-right: 5px;
+    margin-bottom: 5px;
+}
+
+.text {
+    padding-top: 30px;
+}
