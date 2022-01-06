@@ -9,7 +9,7 @@ var uv = document.getElementById("uv");
 var fiveDayData = [];
 var citys = []
 var tempDate = new Date()
-var today = " " + tempDate.getDate() + "/" + tempDate.getMonth() + "/" + tempDate.getFullYear() + " ";
+var today = tempDate.toLocaleDateString();
 
 
 serchForm.addEventListener("submit", function(event) {
@@ -43,7 +43,12 @@ function fiveDay(lat, lon) {
             if (response.ok) {
                 response.json().then(function(data) {
                     console.log(data.current.weather[0].description);
+                    // updating all the data for corrent date 
+                    temp.textContent = data.current.temp;
+                    wind.textContent = data.current.wind_speed;
+                    humidity.textContent = data.current.humidity;
                     uv.textContent = data.current.uvi;
+
                     fiveDayData = data;
                     fiveDaysElements();
                 })
@@ -57,13 +62,13 @@ function fiveDay(lat, lon) {
 // get one day forcast
 function oneday() {
     var apiUrl = 'https://api.openweathermap.org/data/2.5/weather?q=' + cityInput.value + '&units=imperial&appid=0300d1098792a74c4fd86df727631b1d'
+    console.log(apiUrl);
     fetch(apiUrl)
         .then(function(response) {
             if (response.ok) {
                 response.json().then(function(data) {
 
-                    temp.textContent = data.main.temp;
-                    wind.textContent = data.wind.speed;
+
 
                     var dayimg = data.weather[0].icon;
                     var src = "http://openweathermap.org/img/wn/" + dayimg + "@2x.png"
@@ -72,7 +77,7 @@ function oneday() {
                     document.getElementById("city").textContent = cityInput.value;
                     document.getElementById("date").textContent = " (" + today + ")"
 
-                    humidity.textContent = data.main.humidity;
+
                     var lon = data.coord.lon;
                     var lat = data.coord.lat;
                     console.log("lon:" + lon + "lat:" + lat)
@@ -120,14 +125,14 @@ function fiveDaysElements() {
 
         // coverting date do reade able date
         var tempDate = new Date(fiveDayData.daily[i].dt * 1000);
-        sDate.textContent = tempDate.getMonth() + "/" + tempDate.getDate() + "/" + tempDate.getFullYear();
+        sDate.textContent = tempDate.getMonth() + 1 + "/" + tempDate.getDate() + "/" + tempDate.getFullYear();
 
         // set weather icon 
         var img = fiveDayData.daily[i].weather[0].icon;
         sign.setAttribute("src", "http://openweathermap.org/img/wn/" + img + "@2x.png")
 
 
-        sTemp.innerHTML = "Temp: &nbsp;" + fiveDayData.daily[i].temp.day + "&nbsp; F";
+        sTemp.innerHTML = "Temp: &nbsp;" + fiveDayData.daily[i].temp.day + "˚F";
         sWind.innerHTML = "Wind: &nbsp;" + fiveDayData.daily[i].wind_speed + "MPH";
         Shumidity.innerHTML = "Humidity: &nbsp" + fiveDayData.daily[i].humidity + "&nbsp %";
 
